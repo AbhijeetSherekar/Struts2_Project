@@ -223,6 +223,7 @@ public class UpdateAction extends ActionSupport {
 		return item1;
 	}
 
+	
 	public void setItem1(String item1) {
 		this.item1 = item1;
 	}
