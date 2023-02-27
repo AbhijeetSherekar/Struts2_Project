@@ -1,10 +1,9 @@
 package org.websparrow.action;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
+
 import java.util.List;
 
-import org.websparrow.bean.InvoiceBean;
 import org.websparrow.dao.Admin;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,11 +21,10 @@ public class UpdateAction extends ActionSupport {
 	private int invoiceId;
 	private String msg = "";
 	ResultSet rs = null;
-	Admin dao = new Admin(); 
+	Admin dao = new Admin();
 	String submitType;
 	private List<String> itemNames;
 	private List<String> customerNameList;
-	
 
 	@Override
 	public String execute() throws Exception {
@@ -35,132 +33,120 @@ public class UpdateAction extends ActionSupport {
 			itemNames = dao.getItemNames();
 			customerNameList = dao.getcustomerNames();
 			if (submitType.equals("updatedata")) {
-				 
-				 rs = dao.fetchUserDetails1(invoiceId);
-					if (rs != null) {
-						int count = 0;
-						while (rs.next()) {
-							// Create a new Invoice object and set its properties from the result set
-							ArrayList<InvoiceBean> invoiceDetails = new ArrayList<>();
-							InvoiceBean invoice = new InvoiceBean();
-							if (count == 0) {
-								
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem(rs.getString("item"));
-								invoice.setPrice(rs.getString("price"));
-								invoice.setQuantity(rs.getString("quantity"));
-								invoice.setTotalPrice(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
-								
-							} else if (count == 1) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem1(rs.getString("item"));
-								invoice.setPrice1(rs.getString("price"));
-								invoice.setQuantity1(rs.getString("quantity"));
-								invoice.setTotalPrice1(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
 
-							} else if (count == 2) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem2(rs.getString("item"));
-								invoice.setPrice2(rs.getString("price"));
-								invoice.setQuantity2(rs.getString("quantity"));
-								invoice.setTotalPrice2(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
+				rs = dao.fetchUserDetails1(invoiceId);
+				if (rs != null) {
+					int count = 0;
+					while (rs.next()) {
+						// Create a new Invoice object and set its properties from the result set
 
-							} else if (count == 3) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem3(rs.getString("item"));
-								invoice.setPrice3(rs.getString("price"));
-								invoice.setQuantity3(rs.getString("quantity"));
-								invoice.setTotalPrice3(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
+						if (count == 0) {
 
-							} else if (count == 4) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem4(rs.getString("item"));
-								invoice.setPrice4(rs.getString("price"));
-								invoice.setQuantity4(rs.getString("quantity"));
-								invoice.setTotalPrice4(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item = rs.getString("item");
+							price = rs.getString("price");
+							quantity = rs.getString("quantity");
+							totalPrice = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 1) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item1 = rs.getString("item");
+							price1 = rs.getString("price");
+							quantity1 = rs.getString("quantity");
+							totalPrice1 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
 
-							} else if (count == 5) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem5(rs.getString("item"));
-								invoice.setPrice5(rs.getString("price"));
-								invoice.setQuantity5(rs.getString("quantity"));
-								invoice.setTotalPrice5(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
-
-							} else if (count == 6) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem6(rs.getString("item"));
-								invoice.setPrice6(rs.getString("price"));
-								invoice.setQuantity6(rs.getString("quantity"));
-								invoice.setTotalPrice6(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
-
-							} else if (count == 7) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem7(rs.getString("item"));
-								invoice.setPrice7(rs.getString("price"));
-								invoice.setQuantity7(rs.getString("quantity"));
-								invoice.setTotalPrice7(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
-
-							} else if (count == 8) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem8(rs.getString("item"));
-								invoice.setPrice8(rs.getString("price"));
-								invoice.setQuantity8(rs.getString("quantity"));
-								invoice.setTotalPrice8(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
-
-							} else if (count == 9) {
-								invoice.setInvoiceId(rs.getInt("invoiceId"));
-								invoice.setInvoiceDate(rs.getString("invoiceDate"));
-								invoice.setCustomerName(rs.getString("customerName"));
-								invoice.setItem9(rs.getString("item"));
-								invoice.setPrice9(rs.getString("price"));
-								invoice.setQuantity9(rs.getString("quantity"));
-								invoice.setTotalPrice9(rs.getString("totalPrice"));
-								invoice.setTotal_invoice_amount(rs.getString("total_invoice_amount"));
-
-							}
-
-							// Add the Invoice object to the list
-							invoiceDetails.add(invoice);
-							count++;
+						} else if (count == 2) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item2 = rs.getString("item");
+							price2 = rs.getString("price");
+							quantity2 = rs.getString("quantity");
+							totalPrice2 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 3) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item3 = rs.getString("item");
+							price3 = rs.getString("price");
+							quantity3 = rs.getString("quantity");
+							totalPrice3 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 4) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item4 = rs.getString("item");
+							price4 = rs.getString("price");
+							quantity4 = rs.getString("quantity");
+							totalPrice4 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 5) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item5 = rs.getString("item");
+							price5 = rs.getString("price");
+							quantity5 = rs.getString("quantity");
+							totalPrice5 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 6) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item6 = rs.getString("item");
+							price6 = rs.getString("price");
+							quantity6 = rs.getString("quantity");
+							totalPrice6 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 7) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item7 = rs.getString("item");
+							price7 = rs.getString("price");
+							quantity7 = rs.getString("quantity");
+							totalPrice7 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 8) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item8 = rs.getString("item");
+							price8 = rs.getString("price");
+							quantity8 = rs.getString("quantity");
+							totalPrice8 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
+						} else if (count == 9) {
+							invoiceId = rs.getInt("invoiceId");
+							invoiceDate = rs.getString("invoiceDate");
+							customerName = rs.getString("customerName");
+							item9 = rs.getString("item");
+							price9 = rs.getString("price");
+							quantity9 = rs.getString("quantity");
+							totalPrice9 = rs.getString("totalPrice");
+							total_invoice_amount = rs.getString("total_invoice_amount");
 						}
+
+						count++;
 					}
-				
-			}else {
-				
-				invoiceId=dao.deleteUserDetails(invoiceId);
-				int i = dao.updateUserDetails(invoiceId, invoiceDate, customerName, item, item1, item2, item3, item4,
-						item5, item6, item7, item8, item9, price, price1, price2, price3, price4, price5, price6,
-						price7, price8, price9, quantity, quantity1, quantity2, quantity3, quantity4, quantity5,
-						quantity6, quantity7, quantity8, quantity9, totalPrice, totalPrice1, totalPrice2, totalPrice3,
-						totalPrice4, totalPrice5, totalPrice6, totalPrice7, totalPrice8, totalPrice9,
-						total_invoice_amount);
+				}
+
+			} else {
+				int id = invoiceId;
+
+				invoiceId = dao.deleteUserDetails(invoiceId);
+				int i = dao.updateUserDetails(id, invoiceDate, customerName, item, item1, item2, item3, item4, item5,
+						item6, item7, item8, item9, price, price1, price2, price3, price4, price5, price6, price7,
+						price8, price9, quantity, quantity1, quantity2, quantity3, quantity4, quantity5, quantity6,
+						quantity7, quantity8, quantity9, totalPrice, totalPrice1, totalPrice2, totalPrice3, totalPrice4,
+						totalPrice5, totalPrice6, totalPrice7, totalPrice8, totalPrice9, total_invoice_amount);
 				if (i > 0) {
 					msg = "Record Updated Successfuly";
 				} else {
@@ -175,9 +161,6 @@ public class UpdateAction extends ActionSupport {
 		return "UPDATE";
 
 	}
-	
-
-	
 
 	public List<String> getItemNames() {
 		return itemNames;
@@ -223,7 +206,6 @@ public class UpdateAction extends ActionSupport {
 		return item1;
 	}
 
-	
 	public void setItem1(String item1) {
 		this.item1 = item1;
 	}
